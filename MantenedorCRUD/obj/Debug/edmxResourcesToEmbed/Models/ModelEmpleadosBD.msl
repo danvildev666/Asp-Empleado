@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EmpleadosBDModelStoreContainer" CdmEntityContainer="EmpleadosBDEntities">
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="EmpleadosBDModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="rut" ColumnName="rut" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="EmpleadosBDModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="n_profesion" ColumnName="n_profesion" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="fec_nac" ColumnName="fec_nac" />
+          <ScalarProperty Name="genero" ColumnName="genero" />
+          <ScalarProperty Name="annos_xp" ColumnName="annos_xp" />
+          <ScalarProperty Name="amaterno" ColumnName="amaterno" />
+          <ScalarProperty Name="apaterno" ColumnName="apaterno" />
+          <ScalarProperty Name="pnombre" ColumnName="pnombre" />
+          <ScalarProperty Name="rut" ColumnName="rut" />
+          <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
