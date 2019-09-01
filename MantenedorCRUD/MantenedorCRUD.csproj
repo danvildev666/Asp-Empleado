@@ -152,9 +152,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelEmpleadosBD.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Parametros_emp.cs">
+      <DependentUpon>ModelEmpleadosBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>ModelEmpleadosBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\InformacionEmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListaEmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\RegistrarViewModel.cs" />
     <Compile Include="Models\ViewModels\UsuarioViewModel.cs" />
@@ -260,6 +264,7 @@
     <Content Include="Views\Empleado\Editar.cshtml" />
     <Content Include="Views\Empleado\Index2.cshtml" />
     <Content Include="Views\Empleado\IndexDark.cshtml" />
+    <Content Include="Views\Empleado\Informacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -28,5 +28,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Parametros_emp">
+      <EntityTypeMapping TypeName="EmpleadosBDModel.Parametros_emp">
+        <MappingFragment StoreEntitySet="Parametros_emp">
+          <ScalarProperty Name="indemnizacion" ColumnName="indemnizacion" />
+          <ScalarProperty Name="sueldo_liquido" ColumnName="sueldo_liquido" />
+          <ScalarProperty Name="sueldo_bruto" ColumnName="sueldo_bruto" />
+          <ScalarProperty Name="cargas_fam" ColumnName="cargas_fam" />
+          <ScalarProperty Name="afp" ColumnName="afp" />
+          <ScalarProperty Name="isapre" ColumnName="isapre" />
+          <ScalarProperty Name="antiguedad" ColumnName="antiguedad" />
+          <ScalarProperty Name="valor_ex" ColumnName="valor_ex" />
+          <ScalarProperty Name="valor_hora" ColumnName="valor_hora" />
+          <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
+          <ScalarProperty Name="ParametrosID" ColumnName="ParametrosID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

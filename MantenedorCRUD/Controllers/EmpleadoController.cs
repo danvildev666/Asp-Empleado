@@ -122,6 +122,43 @@ namespace MantenedorCRUD.Controllers
             }
             return View(list);
         }
+
+
+        public ActionResult Informacion()
+        {
+
+
+            List<InformacionEmpleadoViewModel> list;
+            using (EmpleadosBDEntities db = new EmpleadosBDEntities())
+
+            {
+
+
+                list = (from d in db.Parametros_emp
+                        select new InformacionEmpleadoViewModel
+                        {
+                            ParametrosID = d.ParametrosID,
+                            EmpleadoID = d.EmpleadoID,
+                            valor_hora = d.valor_hora,
+                            valor_ex = d.valor_ex,
+                            antiguedad = d.antiguedad,
+                            isapre = d.isapre,
+                            afp = d.afp,
+                            cargas_fam = d.cargas_fam,
+
+                            sueldo_bruto = d.sueldo_bruto,
+                            sueldo_liquido = d.sueldo_liquido,
+                            indemnizacion = d.indemnizacion,
+                           
+
+
+                        }).ToList();
+
+
+
+            }
+            return View(list);
+        }
         public ActionResult Registrar()
         {
             return View();

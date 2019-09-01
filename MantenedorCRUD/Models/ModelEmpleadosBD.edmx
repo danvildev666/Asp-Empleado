@@ -4,37 +4,70 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EmpleadosBDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="EmpleadosBDModelStoreContainer">
-    <EntitySet Name="Usuario" EntityType="EmpleadosBDModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Empleado" EntityType="EmpleadosBDModel.Store.Empleado" store:Type="Tables" Schema="dbo" />
-  </EntityContainer>
-  <EntityType Name="Usuario">
-    <Key>
-      <PropertyRef Name="rut" />
-    </Key>
-    <Property Name="rut" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="pass" Type="varchar" Nullable="false" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Empleado">
-    <Key>
-      <PropertyRef Name="EmpleadoID" />
-    </Key>
-    <Property Name="EmpleadoID" Type="int" Nullable="false" />
-    <Property Name="rut" Type="varchar" Nullable="false" MaxLength="12" />
-    <Property Name="pnombre" Type="varchar" Nullable="false" MaxLength="25" />
-    <Property Name="apaterno" Type="varchar" Nullable="false" MaxLength="25" />
-    <Property Name="amaterno" Type="varchar" Nullable="false" MaxLength="25" />
-    <Property Name="annos_xp" Type="int" Nullable="false" />
-    <Property Name="genero" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="fec_nac" Type="datetime" Nullable="false" />
-    <Property Name="email" Type="varchar" Nullable="false" MaxLength="30" />
-    <Property Name="telefono" Type="varchar" Nullable="false" MaxLength="15" />
-    <Property Name="direccion" Type="varchar" Nullable="false" MaxLength="40" />
-    <Property Name="n_profesion" Type="varchar" Nullable="false" MaxLength="25" />
-    <Property Name="foto" Type="varbinary(max)" Nullable="true" />
-  </EntityType>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="EmpleadosBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="EmpleadoID" />
+          </Key>
+          <Property Name="EmpleadoID" Type="int" Nullable="false" />
+          <Property Name="rut" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="pnombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="apaterno" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="amaterno" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="annos_xp" Type="int" Nullable="false" />
+          <Property Name="genero" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fec_nac" Type="date" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="n_profesion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="foto" Type="image" />
+        </EntityType>
+        <EntityType Name="Parametros_emp">
+          <Key>
+            <PropertyRef Name="ParametrosID" />
+          </Key>
+          <Property Name="ParametrosID" Type="int" Nullable="false" />
+          <Property Name="EmpleadoID" Type="int" Nullable="false" />
+          <Property Name="valor_hora" Type="float" Nullable="false" />
+          <Property Name="valor_ex" Type="float" Nullable="false" />
+          <Property Name="antiguedad" Type="int" Nullable="false" />
+          <Property Name="isapre" Type="float" Nullable="false" />
+          <Property Name="afp" Type="float" Nullable="false" />
+          <Property Name="cargas_fam" Type="int" Nullable="false" />
+          <Property Name="sueldo_bruto" Type="float" Nullable="false" />
+          <Property Name="sueldo_liquido" Type="float" Nullable="false" />
+          <Property Name="indemnizacion" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="rut" />
+          </Key>
+          <Property Name="rut" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Parametros_emp_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Parametros_emp" Type="Self.Parametros_emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="EmpleadoID" />
+            </Principal>
+            <Dependent Role="Parametros_emp">
+              <PropertyRef Name="EmpleadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EmpleadosBDModelStoreContainer">
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametros_emp" EntityType="Self.Parametros_emp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Parametros_emp_Empleado" Association="Self.FK_Parametros_emp_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Parametros_emp" EntitySet="Parametros_emp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EmpleadosBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -48,6 +81,11 @@
         <EntityContainer Name="EmpleadosBDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <EntitySet Name="Empleado" EntityType="EmpleadosBDModel.Empleado" />
+          <EntitySet Name="Parametros_emp" EntityType="EmpleadosBDModel.Parametros_emp" />
+          <AssociationSet Name="FK_Parametros_emp_Empleado" Association="EmpleadosBDModel.FK_Parametros_emp_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Parametros_emp" EntitySet="Parametros_emp" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Empleado">
           <Key>
@@ -66,7 +104,37 @@
           <Property Name="direccion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="n_profesion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Parametros_emp" Relationship="EmpleadosBDModel.FK_Parametros_emp_Empleado" FromRole="Empleado" ToRole="Parametros_emp" />
         </EntityType>
+        <EntityType Name="Parametros_emp">
+          <Key>
+            <PropertyRef Name="ParametrosID" />
+          </Key>
+          <Property Name="ParametrosID" Type="Int32" Nullable="false" />
+          <Property Name="EmpleadoID" Type="Int32" Nullable="false" />
+          <Property Name="valor_hora" Type="Double" Nullable="false" />
+          <Property Name="valor_ex" Type="Double" Nullable="false" />
+          <Property Name="antiguedad" Type="Int32" Nullable="false" />
+          <Property Name="isapre" Type="Double" Nullable="false" />
+          <Property Name="afp" Type="Double" Nullable="false" />
+          <Property Name="cargas_fam" Type="Int32" Nullable="false" />
+          <Property Name="sueldo_bruto" Type="Double" Nullable="false" />
+          <Property Name="sueldo_liquido" Type="Double" Nullable="false" />
+          <Property Name="indemnizacion" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="EmpleadosBDModel.FK_Parametros_emp_Empleado" FromRole="Parametros_emp" ToRole="Empleado" />
+        </EntityType>
+        <Association Name="FK_Parametros_emp_Empleado">
+          <End Type="EmpleadosBDModel.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="EmpleadosBDModel.Parametros_emp" Role="Parametros_emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="EmpleadoID" />
+            </Principal>
+            <Dependent Role="Parametros_emp">
+              <PropertyRef Name="EmpleadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -100,6 +168,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="Parametros_emp">
+            <EntityTypeMapping TypeName="EmpleadosBDModel.Parametros_emp">
+              <MappingFragment StoreEntitySet="Parametros_emp">
+                <ScalarProperty Name="indemnizacion" ColumnName="indemnizacion" />
+                <ScalarProperty Name="sueldo_liquido" ColumnName="sueldo_liquido" />
+                <ScalarProperty Name="sueldo_bruto" ColumnName="sueldo_bruto" />
+                <ScalarProperty Name="cargas_fam" ColumnName="cargas_fam" />
+                <ScalarProperty Name="afp" ColumnName="afp" />
+                <ScalarProperty Name="isapre" ColumnName="isapre" />
+                <ScalarProperty Name="antiguedad" ColumnName="antiguedad" />
+                <ScalarProperty Name="valor_ex" ColumnName="valor_ex" />
+                <ScalarProperty Name="valor_hora" ColumnName="valor_hora" />
+                <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
+                <ScalarProperty Name="ParametrosID" ColumnName="ParametrosID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

@@ -14,6 +14,12 @@ namespace MantenedorCRUD.Models
     
     public partial class Empleado
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Empleado()
+        {
+            this.Parametros_emp = new HashSet<Parametros_emp>();
+        }
+    
         public int EmpleadoID { get; set; }
         public string rut { get; set; }
         public string pnombre { get; set; }
@@ -27,5 +33,8 @@ namespace MantenedorCRUD.Models
         public string direccion { get; set; }
         public string n_profesion { get; set; }
         public byte[] foto { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Parametros_emp> Parametros_emp { get; set; }
     }
 }

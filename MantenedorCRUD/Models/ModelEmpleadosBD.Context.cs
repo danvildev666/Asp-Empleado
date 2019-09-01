@@ -27,5 +27,6 @@ namespace MantenedorCRUD.Models
     
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
+        public virtual DbSet<Parametros_emp> Parametros_emp { get; set; }
     }
 }

@@ -10,6 +10,11 @@
   <EntityContainer Name="EmpleadosBDEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Usuario" EntityType="Self.Usuario" />
     <EntitySet Name="Empleado" EntityType="EmpleadosBDModel.Empleado" />
+    <EntitySet Name="Parametros_emp" EntityType="EmpleadosBDModel.Parametros_emp" />
+    <AssociationSet Name="FK_Parametros_emp_Empleado" Association="EmpleadosBDModel.FK_Parametros_emp_Empleado">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Parametros_emp" EntitySet="Parametros_emp" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Empleado">
     <Key>
@@ -28,5 +33,35 @@
     <Property Name="direccion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
     <Property Name="n_profesion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Parametros_emp" Relationship="EmpleadosBDModel.FK_Parametros_emp_Empleado" FromRole="Empleado" ToRole="Parametros_emp" />
   </EntityType>
+  <EntityType Name="Parametros_emp">
+    <Key>
+      <PropertyRef Name="ParametrosID" />
+    </Key>
+    <Property Name="ParametrosID" Type="Int32" Nullable="false" />
+    <Property Name="EmpleadoID" Type="Int32" Nullable="false" />
+    <Property Name="valor_hora" Type="Double" Nullable="false" />
+    <Property Name="valor_ex" Type="Double" Nullable="false" />
+    <Property Name="antiguedad" Type="Int32" Nullable="false" />
+    <Property Name="isapre" Type="Double" Nullable="false" />
+    <Property Name="afp" Type="Double" Nullable="false" />
+    <Property Name="cargas_fam" Type="Int32" Nullable="false" />
+    <Property Name="sueldo_bruto" Type="Double" Nullable="false" />
+    <Property Name="sueldo_liquido" Type="Double" Nullable="false" />
+    <Property Name="indemnizacion" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Empleado" Relationship="EmpleadosBDModel.FK_Parametros_emp_Empleado" FromRole="Parametros_emp" ToRole="Empleado" />
+  </EntityType>
+  <Association Name="FK_Parametros_emp_Empleado">
+    <End Type="EmpleadosBDModel.Empleado" Role="Empleado" Multiplicity="1" />
+    <End Type="EmpleadosBDModel.Parametros_emp" Role="Parametros_emp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="EmpleadoID" />
+      </Principal>
+      <Dependent Role="Parametros_emp">
+        <PropertyRef Name="EmpleadoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
