@@ -268,3 +268,44 @@ C:\Users\danvi\Documents\GitHub\Asp.net-Mantenedor-Empleados\MantenedorCRUDv1\Ma
 C:\Users\danvi\Documents\GitHub\Asp.net-Mantenedor-Empleados\MantenedorCRUDv1\MantenedorCRUD\obj\Debug\MantenedorCRUD.csproj.CopyComplete
 C:\Users\danvi\Documents\GitHub\Asp.net-Mantenedor-Empleados\MantenedorCRUDv1\MantenedorCRUD\obj\Debug\MantenedorCRUD.dll
 C:\Users\danvi\Documents\GitHub\Asp.net-Mantenedor-Empleados\MantenedorCRUDv1\MantenedorCRUD\obj\Debug\MantenedorCRUD.pdb
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\MantenedorCRUD.dll.config
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\MantenedorCRUD.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\MantenedorCRUD.pdb
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\Antlr3.Runtime.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\EntityFramework.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\EntityFramework.SqlServer.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\Newtonsoft.Json.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.Helpers.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.Mvc.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.Optimization.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.Razor.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.WebPages.Deployment.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.WebPages.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.WebPages.Razor.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\WebGrease.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\EntityFramework.xml
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\EntityFramework.SqlServer.xml
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\Newtonsoft.Json.xml
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.Helpers.xml
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.Mvc.xml
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.Optimization.xml
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.Razor.xml
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.WebPages.xml
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.WebPages.Deployment.xml
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\System.Web.WebPages.Razor.xml
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\Antlr3.Runtime.pdb
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\es\System.Web.Helpers.resources.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\es\System.Web.Mvc.resources.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\es\System.Web.Optimization.resources.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\es\System.Web.Razor.resources.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\es\System.Web.WebPages.resources.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\obj\Debug\MantenedorCRUD.csprojAssemblyReference.cache
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\obj\Debug\MantenedorCRUD.csproj.CoreCompileInputs.cache
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\obj\Debug\MantenedorCRUD.csproj.CopyComplete
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\obj\Debug\MantenedorCRUD.dll
+C:\Users\danvi\Documents\Repositorios Git\MantenedorCRUD\obj\Debug\MantenedorCRUD.pdb

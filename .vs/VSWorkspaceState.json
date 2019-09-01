@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MantenedorCRUD",
+    "\\MantenedorCRUD\\Views",
+    "\\MantenedorCRUD\\Views\\Empleado"
   ],
+  "SelectedNode": "\\MantenedorCRUD\\Views\\Empleado\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }
