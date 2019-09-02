@@ -159,6 +159,57 @@ namespace MantenedorCRUD.Controllers
             }
             return View(list);
         }
+
+        public ActionResult RegistrarInformacion()
+        {
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult RegistrarInformacion(InformacionEmpleadoViewModel model)
+        {
+
+            try
+            {
+
+                if (ModelState.IsValid)
+                {
+                    using (EmpleadosBDEntities db = new EmpleadosBDEntities())
+                    {
+
+
+
+                        var oTabla = new Parametros_emp();
+                        oTabla.EmpleadoID = model.EmpleadoID;
+                        oTabla.ParametrosID = model.ParametrosID;
+                        oTabla.afp = model.afp;
+                        oTabla.antiguedad = model.antiguedad;
+                        oTabla.cargas_fam = model.cargas_fam;
+                        oTabla.indemnizacion = model.indemnizacion;
+                        oTabla.isapre = model.isapre;
+                        oTabla.sueldo_bruto = model.sueldo_bruto;
+                        oTabla.sueldo_liquido = model.sueldo_liquido;
+                        oTabla.valor_ex = model.valor_ex;
+                        oTabla.valor_hora = model.valor_hora;
+                       
+
+
+                        db.Parametros_emp.Add(oTabla);
+                        db.SaveChanges();
+                    }
+                    return Redirect("~/Empleado/Informacion/");
+                }
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
         public ActionResult Registrar()
         {
             return View();
@@ -292,5 +343,8 @@ namespace MantenedorCRUD.Controllers
 
         }
     }
+
+
+
 
 }

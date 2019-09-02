@@ -1,94 +1,113 @@
 ﻿
-    @model List<MantenedorCRUD.Models.ViewModels.ListaEmpleadoViewModel>
-    @{
-        ViewBag.Title = "Datos Empleados";
-
-    }
-
-    <h2>@ViewBag.Title</h2>
-
-    <body style="background-image: url(/img/bg.jpg); width:100%; height:100%;background-attachment:fixed;background-size:cover;">
-
-
-        @*PjsssjruebaGit*@
-        @*otroCffssdamdbio*@ @*PruebaGit*@
-        @*otroCddaddmbdddiodv2*@
-
-
-        <div class="container">
-            <div class="mx-auto col-xl-15 main-section">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
-                        <div class="card" style="width:75rem;">
-                            <div class="card-header">
 
 
 
-                                <div class="border-bottom" style="text-align:right;padding:7px;">
+@model List<MantenedorCRUD.Models.ViewModels.ListaEmpleadoViewModel>
+@{
+    ViewBag.Title = "Datos Empleados";
 
-                                    <a href="/Empleado/Registrar" class="btn btn-primary">Registrar</a>
+}
 
-                                </div>
+<h2>@ViewBag.Title</h2>
+<!-- Los iconos tipo Solid de Fontawesome-->
+<link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link href="@Url.Content("~/Content/user-form.css")" rel="stylesheet" type="text/css" />
+
+<body>
+
+
+
+
+
+
+    <div class="container">
+        <div class="mx-auto col-xl-15 main-section">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                    <div class="card" style="width:75rem;">
+                        <div class="card-header">
+
+
+
+
+
+                            <div class="border-bottom" style="text-align:right;padding:3px;">
+
+                                <a href="~/Empleado/Registrar" class="btn btn-success" title="Registrar Nuevo Empleado" data-toggle="tooltip"><i class="material-icons">&#xE147;</i>Registrar Nuevo</a>
+
                             </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="userList" class="table table-bordered table-hover table-striped">
-                                        <thead class="thead-light">
 
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="userList" class="table table-bordered table-hover table-striped">
+                                    <thead class="thead-light">
+
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Rut</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Apellido Paterno</th>
+                                            <th scope="col">Apellido Materno</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Genero</th>
+                                            <th scope="col">Fecha Nacimiento</th>
+                                            <th scope="col">Años de experiencia</th>
+                                            <th scope="col">Dirección</th>
+                                            <th scope="col">Nombre Profesion</th>
+                                            <th scope="col">Teléfono</th>
+                                            <th scope="col">Foto</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var oElemento in Model)
+                                        {
                                             <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Rut</th>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Apellido Paterno</th>
-                                                <th scope="col">Apellido Materno</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Genero</th>
-                                                <th scope="col">Fecha Nacimiento</th>
-                                                <th scope="col">Años de experiencia</th>
-                                                <th scope="col">Dirección</th>
-                                                <th scope="col">Nombre Profesion</th>
-                                                <th scope="col">Teléfono</th>
-                                                <th scope="col">Foto</th>
-                                                <th></th>
+                                                <td> @oElemento.EmpleadoID</td>
+                                                <td> @oElemento.rut</td>
+                                                <td> @oElemento.pnombre</td>
+                                                <td> @oElemento.apaterno</td>
+                                                <td> @oElemento.amaterno</td>
+                                                <td> @oElemento.email</td>
+                                                <td> @oElemento.genero</td>
+                                                <td> @oElemento.fec_nac.ToString("dd/MM/yyyy")</td>
+                                                <td> @oElemento.annos_xp</td>
+                                                <td> @oElemento.direccion</td>
+                                                <td> @oElemento.n_profesion</td>
+                                                <td> @oElemento.telefono</td>
+                                                <td> @oElemento.foto</td>
+
+                                                <td>
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+
+                                                        <a href="~/Empleado/Editar/@oElemento.EmpleadoID"><i class="fas fa-edit"></i></a> | <a href="~/Empleado/Eliminar/@oElemento.EmpleadoID"><i class="fas fa-user-times"></i></a>|
+                                                        <a href="~/Empleado/Informacion/@oElemento.EmpleadoID/" class="view" title="Ver Empleado" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                                    </div>
+
+
+                                                </td>
+
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var oElemento in Model)
-                                            {
-                                                <tr>
-                                                    <td> @oElemento.EmpleadoID</td>
-                                                    <td> @oElemento.rut</td>
-                                                    <td> @oElemento.pnombre</td>
-                                                    <td> @oElemento.apaterno</td>
-                                                    <td> @oElemento.amaterno</td>
-                                                    <td> @oElemento.email</td>
-                                                    <td> @oElemento.genero</td>
-                                                    <td> @oElemento.fec_nac.ToString("dd/MM/yyyy")</td>
-                                                    <td> @oElemento.annos_xp</td>
-                                                    <td> @oElemento.direccion</td>
-                                                    <td> @oElemento.n_profesion</td>
-                                                    <td> @oElemento.telefono</td>
-                                                    <td> @oElemento.foto</td>
+                                        }
+                                    </tbody>
+                                </table>
 
-                                                    <td>
-
-                                                        <a class="btn btn-outline-info" href="~/Empleado/Editar/@oElemento.EmpleadoID">Editar</a>
-                                                        <a class="btn btn-danger " href="~/Empleado/Eliminar/@oElemento.EmpleadoID">Eliminar</a>
-
-                                                    </td>
-
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
 
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
-    </body>
+</body>

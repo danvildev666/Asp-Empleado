@@ -8,13 +8,20 @@
 
 <h2>@ViewBag.Title</h2>
 
-<body style="background-image: url(/img/bg.jpg); width:100%; height:100%;background-attachment:fixed;background-size:cover;">
+<!-- Los iconos tipo Solid de Fontawesome-->
+<link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link href="@Url.Content("~/Content/user-form.css")" rel="stylesheet" type="text/css" />
 
 
-    @*PjsssjruebaGit*@
-    @*otroCffssdamdbio*@ @*PruebaGit*@
-    @*otroCddaddmbdddiodv2*@
+<body>
 
+
+  
 
     <div class="container">
         <div class="mx-auto col-xl-15 main-section">
@@ -24,12 +31,16 @@
                         <div class="card-header">
 
 
+                            <div class="border-bottom" style="text-align:right;padding:3px;">
 
-                            <div class="border-bottom" style="text-align:right;padding:7px;">
 
-                                <a href="/Empleado/Registrar" class="btn btn-primary">Registrar</a>
+                                <a href="~/Empleado/" class="btn btn-link" title="Atras" style="text-align:right;padding:3px" ; data-toggle="tooltip"><i class="material-icons">navigate_before</i></a>
+                                <a href="~/Empleado/registrarInformacion" class="btn btn-success" title="Registrar Informacion" style="text-align:right;padding:3px" ; data-toggle="tooltip"><i class="material-icons">&#xE147;</i>Registrar Nuevo</a>
+
+
 
                             </div>
+                            
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -37,19 +48,16 @@
                                     <thead class="thead-light">
 
                                         <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Rut</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Apellido Paterno</th>
-                                            <th scope="col">Apellido Materno</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Genero</th>
-                                            <th scope="col">Fecha Nacimiento</th>
-                                            <th scope="col">Años de experiencia</th>
-                                            <th scope="col">Dirección</th>
-                                            <th scope="col">Nombre Profesion</th>
-                                            <th scope="col">Teléfono</th>
-                                            <th scope="col">Foto</th>
+
+                                            <th scope="col">Valor Hora</th>
+                                            <th scope="col">valor Hora Extra</th>
+                                            <th scope="col">Años De Antiguedad</th>
+                                            <th scope="col">Isapre</th>
+                                            <th scope="col">Afp</th>
+                                            <th scope="col">Cargas Familiares</th>
+                                            <th scope="col">Sueldo Bruto</th>
+                                            <th scope="col">Sueldo Liquido</th>
+                                            <th scope="col">Indemnizacion</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -57,8 +65,6 @@
                                         @foreach (var oInformacion in Model)
                                         {
                                             <tr>
-                                                <td> @oInformacion.EmpleadoID</td>
-                                                <td> @oInformacion.ParametrosID</td>
                                                 <td> @oInformacion.valor_hora</td>
                                                 <td> @oInformacion.valor_ex</td>
                                                 <td> @oInformacion.antiguedad</td>
@@ -68,7 +74,7 @@
                                                 <td> @oInformacion.sueldo_bruto</td>
                                                 <td> @oInformacion.sueldo_liquido</td>
                                                 <td> @oInformacion.indemnizacion</td>
-                                              
+
 
                                                 <td>
 
