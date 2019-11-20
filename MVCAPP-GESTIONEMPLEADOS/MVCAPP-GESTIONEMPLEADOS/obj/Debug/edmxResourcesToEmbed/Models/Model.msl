@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GestionEmpleadosDBModelStoreContainer" CdmEntityContainer="GestionEmpleadosDBEntities">
+    <EntitySetMapping Name="Acceso">
+      <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Acceso">
+        <MappingFragment StoreEntitySet="Acceso">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="Fecha_Ultima_Conexion" ColumnName="Fecha_Ultima_Conexion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Afp">
+      <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Afp">
+        <MappingFragment StoreEntitySet="Afp">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="comision" ColumnName="comision" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Asignacion_familiar">
+      <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Asignacion_familiar">
+        <MappingFragment StoreEntitySet="Asignacion_familiar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="tramo" ColumnName="tramo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Beneficio_Antiguedad">
+      <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Beneficio_Antiguedad">
+        <MappingFragment StoreEntitySet="Beneficio_Antiguedad">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Annos_Antiguedad" ColumnName="Annos_Antiguedad" />
+          <ScalarProperty Name="porcentaje_antiguedad" ColumnName="porcentaje_antiguedad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Descuento">
+      <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Descuento">
+        <MappingFragment StoreEntitySet="Descuento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="rut_empleado" ColumnName="rut_empleado" />
+          <ScalarProperty Name="descuento_afp" ColumnName="descuento_afp" />
+          <ScalarProperty Name="seguro_vida" ColumnName="seguro_vida" />
+          <ScalarProperty Name="descuento_salud" ColumnName="descuento_salud" />
+          <ScalarProperty Name="seguro_cesantia" ColumnName="seguro_cesantia" />
+          <ScalarProperty Name="total_descuentos" ColumnName="total_descuentos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+          <ScalarProperty Name="rut" ColumnName="rut" />
+          <ScalarProperty Name="dv" ColumnName="dv" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apaterno" ColumnName="apaterno" />
+          <ScalarProperty Name="amaterno" ColumnName="amaterno" />
+          <ScalarProperty Name="annos_experiencia" ColumnName="annos_experiencia" />
+          <ScalarProperty Name="genero" ColumnName="genero" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="nombre_profesion" ColumnName="nombre_profesion" />
+          <ScalarProperty Name="numero_cargas" ColumnName="numero_cargas" />
+          <ScalarProperty Name="fecha_contrato" ColumnName="fecha_contrato" />
+          <ScalarProperty Name="salud_id" ColumnName="salud_id" />
+          <ScalarProperty Name="afp_id" ColumnName="afp_id" />
+          <ScalarProperty Name="desc_id" ColumnName="desc_id" />
+          <ScalarProperty Name="asignacion_id" ColumnName="asignacion_id" />
+          <ScalarProperty Name="antiguedad_id" ColumnName="antiguedad_id" />
+          <ScalarProperty Name="sueldo_base" ColumnName="sueldo_base" />
+          <ScalarProperty Name="sueldo_liquido" ColumnName="sueldo_liquido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Haberes">
+      <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Haberes">
+        <MappingFragment StoreEntitySet="Haberes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="rut_empleado" ColumnName="rut_empleado" />
+          <ScalarProperty Name="hora_extra" ColumnName="hora_extra" />
+          <ScalarProperty Name="comision" ColumnName="comision" />
+          <ScalarProperty Name="bono" ColumnName="bono" />
+          <ScalarProperty Name="colacion" ColumnName="colacion" />
+          <ScalarProperty Name="movilizacion" ColumnName="movilizacion" />
+          <ScalarProperty Name="sueldo_base" ColumnName="sueldo_base" />
+          <ScalarProperty Name="monto_familiar" ColumnName="monto_familiar" />
+          <ScalarProperty Name="total_haberes" ColumnName="total_haberes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Otros_Descuentos">
+      <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Otros_Descuentos">
+        <MappingFragment StoreEntitySet="Otros_Descuentos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="seguro_vida" ColumnName="seguro_vida" />
+          <ScalarProperty Name="seguro_cesantia" ColumnName="seguro_cesantia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salud">
+      <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Salud">
+        <MappingFragment StoreEntitySet="Salud">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="tipo_salud" ColumnName="tipo_salud" />
+          <ScalarProperty Name="descuento_salud" ColumnName="descuento_salud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,132 @@
+﻿
+@model MVCAPP_GESTIONEMPLEADOS.Models.ViewModels.EmpleadoViewModel
+@{
+    ViewBag.Title = "Registro";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+
+    <!-- Assets -->
+
+    <link href="@Url.Content("~/Content/RegistroSteps.css")" rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/Content/Bootstrap.css")" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <!-- Script -->
+    <script src="~/Scripts/Steps.js"></script>
+
+</head>
+
+<body>
+    @using (Html.BeginForm("New", "Registro", FormMethod.Post, new { enctype = "multipart/form-data" ,id = "register_form" }))
+    {
+    <div class="container">
+        <h2>Registrar Nuevo Empleado</h2>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="alert alert-success hide"></div>
+
+        <fieldset>
+            <h2>Paso 1: Datos Personales</h2>
+            <div class="form-group">
+                <label for="Nombre">Nombre*</label>
+                @Html.TextBoxFor(d => d.nombre, "", new { @class = "form-control", id = "Nombre", placeholder="Nombre"  ,required = "required"})
+            </div>
+            <div class="form-group">
+                <label for="Apellido Paterno">Apellido Paterno*</label>
+                @Html.TextBoxFor(d => d.apaterno, "", new { @class = "form-control", id = "Apaterno" , placeholder="Apellido Paterno" ,required = "required"})
+            </div>
+            <div class="form-group">
+                <label for="Apellido Materno">Apellido Materno*</label>
+                @Html.TextBoxFor(d => d.amaterno, "", new { @class = "form-control", id = "Amaterno" , placeholder="Apellido Materno"  ,required = "required"})
+            </div>
+            <label>Rut*</label>
+            <div class="form-inline">                
+                @Html.TextBoxFor(d => d.rut,"", new { @class = "form-control", id = "rut" , placeholder="12345678"})
+                - @Html.TextBoxFor(d => d.dv, "", new { @class = "form-control", id = "dv" , placeholder="9", style = "width:42px"  ,required = "required"})
+            </div>
+
+            <br />
+            <input type="button" class="next-form btn btn-info" value="Next" />
+        </fieldset>
+        <fieldset>
+            <h2>Paso 2: Información Adicional</h2>
+            <div class="form-group">
+                <label for="email">Email*</label>
+                @Html.TextBoxFor(d => d.email, "", new { @class = "form-control", id = "email", name = "email", placeholder = "Email", required = "required" })
+            </div>
+            <div class="form-group">
+                <label for="mobile">Numero Teléfono*</label>
+                @Html.TextBoxFor(d => d.telefono, "", new { @class = "form-control", id = "mobile", name = "mobile", placeholder = "Numero Teléfono", required = "required" })
+            </div>
+            <div class="form-group">
+                <label for="mobile">Dirección*</label>
+                @Html.TextBoxFor(d => d.direccion, "", new { @class = "form-control", id = "direccion", name = "direccion", placeholder = "Direccion", required = "required" })
+            </div>
+            <label for="gender">Género*</label>
+            <div class="form-group">
+                @Html.RadioButtonFor(d => d.genero, "Masculino", new { @style = "margin: 1em 1em 1em 0;transform: scale(2.1, 2.1);-moz-transform: scale(2.1, 2.1);-ms-transform: scale(2.1, 2.1);-webkit-transform: scale(2.1, 2.1);-o-transform: scale(2.1, 2.1);" })@Html.Label("Masculino  ")
+                @Html.RadioButtonFor(d => d.genero, "Femenino", new { @style = "margin: 1em 1em 2em 0;transform: scale(2.1, 2.1);-moz-transform: scale(2.1, 2.1);-ms-transform: scale(2.1, 2.1);-webkit-transform: scale(2.1, 2.1);-o-transform: scale(2.1, 2.1);" })@Html.Label("Femenino")
+            </div>
+            <label for="nacimiento">Fecha de Nacimiento*</label>
+            <div class="form-group">
+
+                @Html.EditorFor(m => m.fecha_nacimiento, new { htmlAttributes = new { @class = "date-picker", style = "width:300px;height:100%" } })
+            </div>
+            <div class="form-group">
+                <label for="profesion">Profesión*</label>
+                @Html.TextBoxFor(d => d.nombre_profesion, "", new { @class = "form-control", id = "mobile", name = "mobile", placeholder = "Nombre Profesión", required = "required" })
+            </div>
+            <input type="button" name="previous" class="previous-form btn btn-default" value="Previous" />
+            <input type="button" class="next-form btn btn-info" value="Next" />
+        </fieldset>
+
+
+        <fieldset>
+            <h2>Paso 3: Datos de Contrato</h2>
+            <label for="nacimiento">Fecha de Contrato*</label>
+            <div class="form-group">
+                @Html.EditorFor(m => m.fecha_contrato, new { htmlAttributes = new { @class = "date-picker", style = "width:300px;height:100%" } })
+            </div>
+            <div class="form-group">
+                <label for="Nombre">Nro. Cargas Familiares</label>
+                @Html.TextBoxFor(d => d.numero_cargas, "", new { @class = "form-control", id = "nroCargas", name = "nroCargas", placeholder = "Nro. de cargas" })
+            </div>
+            <div class="form-group">
+                <label for="Apellido Paterno">Sueldo Base*</label>
+                @Html.TextBoxFor(d => d.sueldo_base, "", new { @class = "form-control", id = "sueldoBase", name = "sueldoBase", placeholder = "Sueldo Base", required = "required" })
+            </div>
+            <div class="form-group">
+                <label for="Apellido Materno">AFP*</label>
+                @Html.DropDownListFor(Model => Model.afp_id, new SelectList(Model.AfpLista, "Id", "nombre"), "Seleccione")
+            </div>
+            <div class="form-group">
+                <label for="name">Tipo Salud*</label>
+                @Html.DropDownListFor(Model => Model.salud_id, new SelectList(Model.PrevisionLista, "Id", "tipo_salud"), "Seleccione")
+            </div>
+            <div class="form-group">
+                <label for="name">Seguro de Vida*</label>
+                @Html.DropDownListFor(Model => Model.desc_id, new SelectList(Model.OtrosDescuentosLista, "id", "seguro_vida"), "Seleccione")
+            </div>
+            <input type="button" name="previous" class="previous-form btn btn-default" value="Previous" />
+            <input value="Registrar" class="btn btn-primary" type="submit" />
+        </fieldset>
+
+
+    </div>
+    }
+    </body>
+</html>

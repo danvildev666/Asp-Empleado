@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GestionEmpleadosDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Acceso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fecha_Ultima_Conexion" Type="datetime" />
+          <Property Name="Estado" Type="int" />
+        </EntityType>
+        <EntityType Name="Afp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="comision" Type="float" />
+        </EntityType>
+        <EntityType Name="Asignacion_familiar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="valor" Type="float" />
+          <Property Name="tramo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Beneficio_Antiguedad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Annos_Antiguedad" Type="int" />
+          <Property Name="porcentaje_antiguedad" Type="float" />
+        </EntityType>
+        <EntityType Name="Descuento">
+          <Key>
+            <PropertyRef Name="rut_empleado" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rut_empleado" Type="int" Nullable="false" />
+          <Property Name="descuento_afp" Type="float" />
+          <Property Name="seguro_vida" Type="float" />
+          <Property Name="descuento_salud" Type="float" />
+          <Property Name="seguro_cesantia" Type="float" />
+          <Property Name="total_descuentos" Type="float" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="rut" />
+          </Key>
+          <Property Name="IdEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rut" Type="int" Nullable="false" />
+          <Property Name="dv" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="apaterno" Type="nvarchar" MaxLength="50" />
+          <Property Name="amaterno" Type="nvarchar" MaxLength="50" />
+          <Property Name="annos_experiencia" Type="int" />
+          <Property Name="genero" Type="nvarchar" MaxLength="50" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="telefono" Type="int" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre_profesion" Type="nvarchar" MaxLength="50" />
+          <Property Name="numero_cargas" Type="int" />
+          <Property Name="fecha_contrato" Type="date" />
+          <Property Name="salud_id" Type="int" />
+          <Property Name="afp_id" Type="int" />
+          <Property Name="desc_id" Type="int" />
+          <Property Name="asignacion_id" Type="int" />
+          <Property Name="antiguedad_id" Type="int" />
+          <Property Name="sueldo_base" Type="float" />
+          <Property Name="sueldo_liquido" Type="float" />
+        </EntityType>
+        <EntityType Name="Haberes">
+          <Key>
+            <PropertyRef Name="rut_empleado" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rut_empleado" Type="int" Nullable="false" />
+          <Property Name="hora_extra" Type="float" />
+          <Property Name="comision" Type="float" />
+          <Property Name="bono" Type="float" />
+          <Property Name="colacion" Type="float" />
+          <Property Name="movilizacion" Type="float" />
+          <Property Name="sueldo_base" Type="float" />
+          <Property Name="monto_familiar" Type="float" />
+          <Property Name="total_haberes" Type="float" />
+        </EntityType>
+        <EntityType Name="Otros_Descuentos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="seguro_vida" Type="float" />
+          <Property Name="seguro_cesantia" Type="float" />
+        </EntityType>
+        <EntityType Name="Salud">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo_salud" Type="nvarchar" MaxLength="50" />
+          <Property Name="descuento_salud" Type="float" />
+        </EntityType>
+        <Association Name="FK_Descuento_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Descuento" Type="Self.Descuento" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="Descuento">
+              <PropertyRef Name="rut_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Afp">
+          <End Role="Afp" Type="Self.Afp" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afp">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="afp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Asignacion_familiar">
+          <End Role="Asignacion_familiar" Type="Self.Asignacion_familiar" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asignacion_familiar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="asignacion_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Beneficio_Antiguedad">
+          <End Role="Beneficio_Antiguedad" Type="Self.Beneficio_Antiguedad" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficio_Antiguedad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="antiguedad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Otros_Descuentos">
+          <End Role="Otros_Descuentos" Type="Self.Otros_Descuentos" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Otros_Descuentos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="desc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Salud">
+          <End Role="Salud" Type="Self.Salud" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salud">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="salud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Haberes_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Haberes" Type="Self.Haberes" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="Haberes">
+              <PropertyRef Name="rut_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionEmpleadosDBModelStoreContainer">
+          <EntitySet Name="Acceso" EntityType="Self.Acceso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Afp" EntityType="Self.Afp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asignacion_familiar" EntityType="Self.Asignacion_familiar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Beneficio_Antiguedad" EntityType="Self.Beneficio_Antiguedad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Descuento" EntityType="Self.Descuento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Haberes" EntityType="Self.Haberes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Otros_Descuentos" EntityType="Self.Otros_Descuentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salud" EntityType="Self.Salud" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Descuento_Empleado" Association="Self.FK_Descuento_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Descuento" EntitySet="Descuento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Afp" Association="Self.FK_Empleado_Afp">
+            <End Role="Afp" EntitySet="Afp" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Asignacion_familiar" Association="Self.FK_Empleado_Asignacion_familiar">
+            <End Role="Asignacion_familiar" EntitySet="Asignacion_familiar" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Beneficio_Antiguedad" Association="Self.FK_Empleado_Beneficio_Antiguedad">
+            <End Role="Beneficio_Antiguedad" EntitySet="Beneficio_Antiguedad" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Otros_Descuentos" Association="Self.FK_Empleado_Otros_Descuentos">
+            <End Role="Otros_Descuentos" EntitySet="Otros_Descuentos" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Salud" Association="Self.FK_Empleado_Salud">
+            <End Role="Salud" EntitySet="Salud" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Haberes_Empleado" Association="Self.FK_Haberes_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Haberes" EntitySet="Haberes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestionEmpleadosDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Acceso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_Ultima_Conexion" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Afp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="comision" Type="Double" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleado_Afp" FromRole="Afp" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Asignacion_familiar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="valor" Type="Double" />
+          <Property Name="tramo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleado_Asignacion_familiar" FromRole="Asignacion_familiar" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Beneficio_Antiguedad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Annos_Antiguedad" Type="Int32" />
+          <Property Name="porcentaje_antiguedad" Type="Double" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleado_Beneficio_Antiguedad" FromRole="Beneficio_Antiguedad" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Descuento">
+          <Key>
+            <PropertyRef Name="rut_empleado" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut_empleado" Type="Int32" Nullable="false" />
+          <Property Name="descuento_afp" Type="Double" />
+          <Property Name="seguro_vida" Type="Double" />
+          <Property Name="descuento_salud" Type="Double" />
+          <Property Name="seguro_cesantia" Type="Double" />
+          <Property Name="total_descuentos" Type="Double" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Descuento_Empleado" FromRole="Descuento" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="rut" />
+          </Key>
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut" Type="Int32" Nullable="false" />
+          <Property Name="dv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="amaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="annos_experiencia" Type="Int32" />
+          <Property Name="genero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="Int32" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre_profesion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="numero_cargas" Type="Int32" />
+          <Property Name="fecha_contrato" Type="DateTime" Precision="0" />
+          <Property Name="salud_id" Type="Int32" />
+          <Property Name="afp_id" Type="Int32" />
+          <Property Name="desc_id" Type="Int32" />
+          <Property Name="asignacion_id" Type="Int32" />
+          <Property Name="antiguedad_id" Type="Int32" />
+          <Property Name="sueldo_base" Type="Double" />
+          <Property Name="sueldo_liquido" Type="Double" />
+          <NavigationProperty Name="Afp" Relationship="Self.FK_Empleado_Afp" FromRole="Empleado" ToRole="Afp" />
+          <NavigationProperty Name="Asignacion_familiar" Relationship="Self.FK_Empleado_Asignacion_familiar" FromRole="Empleado" ToRole="Asignacion_familiar" />
+          <NavigationProperty Name="Beneficio_Antiguedad" Relationship="Self.FK_Empleado_Beneficio_Antiguedad" FromRole="Empleado" ToRole="Beneficio_Antiguedad" />
+          <NavigationProperty Name="Descuento" Relationship="Self.FK_Descuento_Empleado" FromRole="Empleado" ToRole="Descuento" />
+          <NavigationProperty Name="Otros_Descuentos" Relationship="Self.FK_Empleado_Otros_Descuentos" FromRole="Empleado" ToRole="Otros_Descuentos" />
+          <NavigationProperty Name="Salud" Relationship="Self.FK_Empleado_Salud" FromRole="Empleado" ToRole="Salud" />
+          <NavigationProperty Name="Haberes" Relationship="Self.FK_Haberes_Empleado" FromRole="Empleado" ToRole="Haberes" />
+        </EntityType>
+        <EntityType Name="Haberes">
+          <Key>
+            <PropertyRef Name="rut_empleado" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut_empleado" Type="Int32" Nullable="false" />
+          <Property Name="hora_extra" Type="Double" />
+          <Property Name="comision" Type="Double" />
+          <Property Name="bono" Type="Double" />
+          <Property Name="colacion" Type="Double" />
+          <Property Name="movilizacion" Type="Double" />
+          <Property Name="sueldo_base" Type="Double" />
+          <Property Name="monto_familiar" Type="Double" />
+          <Property Name="total_haberes" Type="Double" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Haberes_Empleado" FromRole="Haberes" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Otros_Descuentos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="seguro_vida" Type="Double" />
+          <Property Name="seguro_cesantia" Type="Double" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleado_Otros_Descuentos" FromRole="Otros_Descuentos" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Salud">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo_salud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descuento_salud" Type="Double" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleado_Salud" FromRole="Salud" ToRole="Empleado" />
+        </EntityType>
+        <Association Name="FK_Empleado_Afp">
+          <End Role="Afp" Type="Self.Afp" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afp">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="afp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Asignacion_familiar">
+          <End Role="Asignacion_familiar" Type="Self.Asignacion_familiar" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asignacion_familiar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="asignacion_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Beneficio_Antiguedad">
+          <End Role="Beneficio_Antiguedad" Type="Self.Beneficio_Antiguedad" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficio_Antiguedad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="antiguedad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Descuento_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Descuento" Type="Self.Descuento" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="Descuento">
+              <PropertyRef Name="rut_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Otros_Descuentos">
+          <End Role="Otros_Descuentos" Type="Self.Otros_Descuentos" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Otros_Descuentos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="desc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Salud">
+          <End Role="Salud" Type="Self.Salud" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salud">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="salud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Haberes_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Haberes" Type="Self.Haberes" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="Haberes">
+              <PropertyRef Name="rut_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionEmpleadosDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Acceso" EntityType="Self.Acceso" />
+          <EntitySet Name="Afp" EntityType="Self.Afp" />
+          <EntitySet Name="Asignacion_familiar" EntityType="Self.Asignacion_familiar" />
+          <EntitySet Name="Beneficio_Antiguedad" EntityType="Self.Beneficio_Antiguedad" />
+          <EntitySet Name="Descuento" EntityType="Self.Descuento" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <EntitySet Name="Haberes" EntityType="Self.Haberes" />
+          <EntitySet Name="Otros_Descuentos" EntityType="Self.Otros_Descuentos" />
+          <EntitySet Name="Salud" EntityType="Self.Salud" />
+          <AssociationSet Name="FK_Empleado_Afp" Association="Self.FK_Empleado_Afp">
+            <End Role="Afp" EntitySet="Afp" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Asignacion_familiar" Association="Self.FK_Empleado_Asignacion_familiar">
+            <End Role="Asignacion_familiar" EntitySet="Asignacion_familiar" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Beneficio_Antiguedad" Association="Self.FK_Empleado_Beneficio_Antiguedad">
+            <End Role="Beneficio_Antiguedad" EntitySet="Beneficio_Antiguedad" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Descuento_Empleado" Association="Self.FK_Descuento_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Descuento" EntitySet="Descuento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Otros_Descuentos" Association="Self.FK_Empleado_Otros_Descuentos">
+            <End Role="Otros_Descuentos" EntitySet="Otros_Descuentos" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Salud" Association="Self.FK_Empleado_Salud">
+            <End Role="Salud" EntitySet="Salud" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Haberes_Empleado" Association="Self.FK_Haberes_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Haberes" EntitySet="Haberes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestionEmpleadosDBModelStoreContainer" CdmEntityContainer="GestionEmpleadosDBEntities">
+          <EntitySetMapping Name="Acceso">
+            <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Acceso">
+              <MappingFragment StoreEntitySet="Acceso">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Fecha_Ultima_Conexion" ColumnName="Fecha_Ultima_Conexion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Afp">
+            <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Afp">
+              <MappingFragment StoreEntitySet="Afp">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asignacion_familiar">
+            <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Asignacion_familiar">
+              <MappingFragment StoreEntitySet="Asignacion_familiar">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="tramo" ColumnName="tramo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Beneficio_Antiguedad">
+            <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Beneficio_Antiguedad">
+              <MappingFragment StoreEntitySet="Beneficio_Antiguedad">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Annos_Antiguedad" ColumnName="Annos_Antiguedad" />
+                <ScalarProperty Name="porcentaje_antiguedad" ColumnName="porcentaje_antiguedad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Descuento">
+            <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Descuento">
+              <MappingFragment StoreEntitySet="Descuento">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rut_empleado" ColumnName="rut_empleado" />
+                <ScalarProperty Name="descuento_afp" ColumnName="descuento_afp" />
+                <ScalarProperty Name="seguro_vida" ColumnName="seguro_vida" />
+                <ScalarProperty Name="descuento_salud" ColumnName="descuento_salud" />
+                <ScalarProperty Name="seguro_cesantia" ColumnName="seguro_cesantia" />
+                <ScalarProperty Name="total_descuentos" ColumnName="total_descuentos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="rut" ColumnName="rut" />
+                <ScalarProperty Name="dv" ColumnName="dv" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apaterno" ColumnName="apaterno" />
+                <ScalarProperty Name="amaterno" ColumnName="amaterno" />
+                <ScalarProperty Name="annos_experiencia" ColumnName="annos_experiencia" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="nombre_profesion" ColumnName="nombre_profesion" />
+                <ScalarProperty Name="numero_cargas" ColumnName="numero_cargas" />
+                <ScalarProperty Name="fecha_contrato" ColumnName="fecha_contrato" />
+                <ScalarProperty Name="salud_id" ColumnName="salud_id" />
+                <ScalarProperty Name="afp_id" ColumnName="afp_id" />
+                <ScalarProperty Name="desc_id" ColumnName="desc_id" />
+                <ScalarProperty Name="asignacion_id" ColumnName="asignacion_id" />
+                <ScalarProperty Name="antiguedad_id" ColumnName="antiguedad_id" />
+                <ScalarProperty Name="sueldo_base" ColumnName="sueldo_base" />
+                <ScalarProperty Name="sueldo_liquido" ColumnName="sueldo_liquido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Haberes">
+            <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Haberes">
+              <MappingFragment StoreEntitySet="Haberes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rut_empleado" ColumnName="rut_empleado" />
+                <ScalarProperty Name="hora_extra" ColumnName="hora_extra" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="bono" ColumnName="bono" />
+                <ScalarProperty Name="colacion" ColumnName="colacion" />
+                <ScalarProperty Name="movilizacion" ColumnName="movilizacion" />
+                <ScalarProperty Name="sueldo_base" ColumnName="sueldo_base" />
+                <ScalarProperty Name="monto_familiar" ColumnName="monto_familiar" />
+                <ScalarProperty Name="total_haberes" ColumnName="total_haberes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Otros_Descuentos">
+            <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Otros_Descuentos">
+              <MappingFragment StoreEntitySet="Otros_Descuentos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="seguro_vida" ColumnName="seguro_vida" />
+                <ScalarProperty Name="seguro_cesantia" ColumnName="seguro_cesantia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salud">
+            <EntityTypeMapping TypeName="GestionEmpleadosDBModel.Salud">
+              <MappingFragment StoreEntitySet="Salud">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="tipo_salud" ColumnName="tipo_salud" />
+                <ScalarProperty Name="descuento_salud" ColumnName="descuento_salud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
